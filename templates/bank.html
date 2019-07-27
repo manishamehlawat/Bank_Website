@@ -1,0 +1,93 @@
+{%load staticfiles%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>bank_account</title>
+		<style>
+			body{
+				margin:0;
+			}
+			.navbar{
+				width:100%;
+				padding:20px;
+				position:fixed;
+				background-color:black; 
+			}
+			.navbar a{
+				text-decoration:none;
+				color:white;
+				padding:20px;
+				font-size:30px;
+			}
+			.navbar a:hover {
+				background-color:black;
+				color:gray;
+			}
+			#home, #signup, #login{
+				height:800px;
+			}
+			input[type=text], input[type=number], input[type=email], input[type=password] {
+				width: 20%;
+				display:inline-block;
+				background:#f1f1f1;
+				padding: 20px;
+			}
+			button {
+				background-color:black;
+				color:white;
+				padding:15px;
+				font-size:18px;
+				border:none;
+				cursor:pointer;
+				width:10%;
+			}
+			.image{
+				margin-top: 60px;
+				width:50%;
+				height:40%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="navbar">
+			<a href="#home">home</a>
+			<a href="#signup">signup</a>
+			<a href="#login">login</a>
+		</div>
+		<div id="home">
+		<br><br><br><br><br>
+			<center>
+				<h1>Mayank Sharma's Bank</h1>
+				<img src="{%static 'images/download.jpg'%}" class="image">
+			</center>
+		</div>
+		<div id="signup">
+			<br><br><br><br> 
+			<form action="{%url 'bankuser:signup'%}" method="POST">
+				{%csrf_token%}
+				<input type="text" name="username" placeholder="NAME">
+				<br>
+				<input type="number" name="phone_number" placeholder="ENTER PHONE NO.">
+				<br>
+				<input type="email" name="email" placeholder="EMAIL">
+				<br>
+				<input type="password" name="password" placeholder="PASSWORD">
+				<br>
+				<button type="submit" name="signup">Sign Up</button>
+			</form>
+		</div>
+		<div id="login">
+			<br><br><br><br>
+			<form action="{%url 'bankuser:login'%}" method="POST">
+				{%csrf_token%}
+				<input type="email" name="email" placeholder="EMAIL">
+				<br>
+				<input type="password" name="password" placeholder="PASSWORD">
+				<br>
+				<button type="submit" name="login">Login</button>
+			</form>
+			{{error}}{{var1}}{{var2}}{{var3}}{{var4}}
+		</div>
+	</body>
+</html>

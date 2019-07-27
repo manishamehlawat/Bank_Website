@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>bank account</title>
+<style>
+.navbar{
+position:fixed;
+width:100%;
+background-color:black;
+color:white;
+}
+
+.navbar a{
+text-decoration:none;
+font-size:35px;
+color:white;
+padding:20px;
+}
+#table,#deposit,#withdraw{
+height:600px;
+padding:20px;
+}
+
+table{
+height:50px;
+padding:8px;
+color:black;
+width:30%;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+   <a href="#table">Home  </a>
+   <a href="#deposit">Deposit  </a>
+   <a href="#withdraw">Withdraw  </a>
+   <a href="{%url 'user_dashboard:logout'%}" >logout</a>
+   
+   
+</div>
+<div id="table">
+<center>
+<br><br><br><br>
+<table border=5>
+<tr>
+    <th>Ac.Number</th>
+    <th>Ac. Balance</th>
+</tr>
+<tr>
+    <td>{{account_number}}</td>
+    <td>Rs  {{account_balance}}</td>
+</tr>
+</table>
+</center>
+
+</div>
+
+<div id="deposit">
+<br><br><br>
+<form action="{%url 'user_dashboard:deposit'%}" method="post">
+{%csrf_token%}
+<input type="number" name="amount" placeholder="ENTER AMOUNT TO DEPOSIT">
+<button type="submit">submit</button>
+</form>
+</div>
+<div id="withdraw">
+<br><br><br>
+<form action="{%url 'user_dashboard:withdraw'%}" method="post">
+{%csrf_token%}
+<input type="number" name="amount" placeholder="ENTER AMOUNT TO withdraw">
+
+<button type="submit">submit</button>
+{{error}}
+</form>
+</div>
+
+
+
+</body>
+</html>
